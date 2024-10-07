@@ -24,24 +24,24 @@ pipeline {
          }
       }
  
-    stage('Build and Push Image') {
+    stage('Build Image') {
          steps {
-           sh 'docker image build -t ${REPOSITORY_TAG} .'
-           // script { 
-           //         dockerImage = docker.build REPOSITORY_TAG 
-          //      }
+           // sh 'docker image build -t ${REPOSITORY_TAG} .'
+            script { 
+                    dockerImage = docker.build REPOSITORY_TAG 
+                }
          }
       }
       
-     // stage('Push Image') {
-     //    steps {
-     //       script { 
-      //         docker.withRegistry( '', registryCredential ) { 
-      //                  dockerImage.push() 
-      //              }
-      //          }
-      //   }
-     // }
+      stage('Push Image') {
+         steps {
+            script { 
+               docker.withRegistry( '', registryCredential ) { 
+                        dockerImage.push() 
+                    }
+                }
+         }
+      }
 
       stage('Deploy to Cluster') {
           steps {
