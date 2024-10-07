@@ -23,12 +23,20 @@ pipeline {
             sh '''mvn clean package'''
          }
       }
-
-      stage('Build and Push Image') {
+ 
+    stage('Build Image') {
          steps {
            //sh 'docker image build -t ${REPOSITORY_TAG} .'
             script { 
                     dockerImage = docker.build REPOSITORY_TAG 
+                }
+         }
+      }
+      
+      stage('Push Image') {
+         steps {
+           //sh 'docker image build -t ${REPOSITORY_TAG} .'
+            script { 
                docker.withRegistry( '', registryCredential ) { 
                         dockerImage.push() 
                     }
