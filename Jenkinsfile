@@ -30,7 +30,7 @@ pipeline {
            // script { 
            //         dockerImage = docker.build REPOSITORY_TAG 
           //      }
-         //}
+         }
       }
       
      // stage('Push Image') {
