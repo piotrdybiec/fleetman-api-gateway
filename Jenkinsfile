@@ -45,7 +45,7 @@ pipeline {
 
       stage('Deploy to Cluster') {
           steps {       
-             sh 'envsubst < ${WORKSPACE}/deploy.yaml | /home/ec2-user/bin/kubectl apply -f -'
+             sh 'envsubst < ${WORKSPACE}/deploy.yaml | kubectl apply -f -'
           }
       }
    }
