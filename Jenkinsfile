@@ -47,7 +47,7 @@ pipeline {
           // steps {       
              // sh 'envsubst < ${WORKSPACE}/deploy.yaml | kubectl apply -f -'
           //} 
-             staeps {
+             steps {
                   script {
                     withAWS(credentials: 'AWS-CREDS', region: eu-central-1) {
                         sh 'envsubst < ${WORKSPACE}/deploy.yaml | kubectl apply -f -'
