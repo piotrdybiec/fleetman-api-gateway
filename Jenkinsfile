@@ -44,16 +44,17 @@ pipeline {
       }
 
       stage('Deploy to Cluster') {
-           steps {       
-              sh 'envsubst < ${WORKSPACE}/deploy.yaml | kubectl apply -f -'
-          } 
-            // steps {
-              //    script {
-                //    withAWS(credentials: 'AWS-CREDS', region: 'eu-central-1') {
-                  //      sh 'envsubst < ${WORKSPACE}/deploy.yaml | kubectl apply -f -'
-                    //    }   
-                //  }
-            // }           
+        //   steps {       
+        //      sh 'envsubst < ${WORKSPACE}/deploy.yaml | kubectl apply -f -'
+        //  } 
+             steps {
+                  script {
+                    withAWS(credentials: 'AWS-CREDS', region: 'eu-central-1') {
+                       sh 'aws eks update-kubeconfig --name fleetman --region eu-central-1' 
+                       sh 'envsubst < ${WORKSPACE}/deploy.yaml | kubectl apply -f -'
+                        }   
+                  }
+             }           
    }
 }
 }   
