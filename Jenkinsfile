@@ -4,7 +4,7 @@ pipeline {
    environment {
      // You must set the following environment variables
      // ORGANIZATION_NAME
-     // YOUR_DOCKERHUB_USERNAME (it doesn't matter if you don't have one) - a ja mam!
+     // YOUR_DOCKERHUB_USERNAME (it doesn't matter if you don't have one) - a ja mam i super!
      registryCredential = 'dockerhub'
      dockerImage = ''
      SERVICE_NAME = "fleetman-api-gateway"
